@@ -1,0 +1,14 @@
+.DS_Store
+*.class
+*.iml
+*.ipr
+*.iws
+.idea
+build
+logs
+.gradle
+*/out
+*/target
+_book
+node_modules
+generated
