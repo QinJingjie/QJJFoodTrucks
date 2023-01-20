@@ -1,6 +1,6 @@
-package com.qjj.repository;
+package com.qjj.domain.repository;
 
-import com.qjj.entity.FoodTruckEntity;
+import com.qjj.persistence.model.FoodTruckEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

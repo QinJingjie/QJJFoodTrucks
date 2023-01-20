@@ -1,4 +1,4 @@
-package com.qjj.domain;
+package com.qjj.transport.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

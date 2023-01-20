@@ -1,4 +1,4 @@
-package com.qjj.domain;
+package com.qjj.domain.model;
 
 public class Location {
     private String location;

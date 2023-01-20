@@ -1,6 +1,6 @@
-package com.qjj.repository;
+package com.qjj.domain.repository;
 
-import com.qjj.entity.FoodTruckEntity;
+import com.qjj.persistence.model.FoodTruckEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

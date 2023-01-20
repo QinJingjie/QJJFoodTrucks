@@ -1,11 +1,10 @@
-package com.qjj.service;
+package com.qjj.transport;
 
-import com.qjj.domain.FacilityType;
-import com.qjj.domain.FoodTruck;
-import com.qjj.domain.FoodTruckDto;
-import com.qjj.domain.Location;
-import com.qjj.entity.FoodTruckEntity;
-import com.qjj.repository.FoodTruckDataRepository;
+import com.qjj.domain.model.FacilityType;
+import com.qjj.domain.model.FoodTruck;
+import com.qjj.domain.model.Location;
+import com.qjj.service.FoodTruckDataService;
+import com.qjj.transport.model.FoodTruckDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,24 +23,23 @@ import java.util.stream.Collectors;
 @Component
 public class FoodTruckFetchDataScheduler {
     private static Logger logger = LoggerFactory.getLogger(FoodTruckFetchDataScheduler.class);
-    private FoodTruckDataRepository foodTruckDataRepository;
+    private FoodTruckDataService foodTruckDataService;
     private RestTemplate restTemplate;
     @Value("${foodtruck.data.url}")
     private String url;
 
     @Autowired
-    public FoodTruckFetchDataScheduler(FoodTruckDataRepository foodTruckDataRepository,
-                                       RestTemplate restTemplate) {
-        this.foodTruckDataRepository = foodTruckDataRepository;
+    public FoodTruckFetchDataScheduler(RestTemplate restTemplate,
+                                       FoodTruckDataService foodTruckDataService) {
         this.restTemplate = restTemplate;
+        this.foodTruckDataService = foodTruckDataService;
     }
 
     @Scheduled(initialDelay = 0, fixedDelay = 60 * 1000)
     public void fetchDataScheduler() {
         List<FoodTruck> foodTruckList = fetchFoodTruckData();
-        List<FoodTruckEntity> entityList = foodTruckList.stream().map(
-                domain -> convertFoodTruckToEntity(domain)).collect(Collectors.toList());
-        foodTruckDataRepository.refreshDataSource(entityList);
+
+       foodTruckDataService.refreshFoodTruckData(foodTruckList);
     }
 
     public List<FoodTruck> fetchFoodTruckData() {
@@ -71,15 +69,7 @@ public class FoodTruckFetchDataScheduler {
                              convertFacilityType(foodTruckDto));
     }
 
-    public FoodTruckEntity convertFoodTruckToEntity(FoodTruck foodTruck) {
-        return new FoodTruckEntity(foodTruck.getAddress(),
-                                   foodTruck.getLocation().getLocation(),
-                                   foodTruck.getApplicant(),
-                                   foodTruck.getFoodItemsList(),
-                                   foodTruck.getFacilityType(),
-                                   foodTruck.getLocation().getLongitude(),
-                                   foodTruck.getLocation().getLatitude());
-    }
+
 
     public List<String> convertFoodItems(FoodTruckDto foodTruckDto) {
         if(foodTruckDto.getFooditems() != null && !foodTruckDto.getFooditems().isEmpty()) {

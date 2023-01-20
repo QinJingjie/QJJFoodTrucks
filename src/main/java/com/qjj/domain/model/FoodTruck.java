@@ -1,4 +1,4 @@
-package com.qjj.domain;
+package com.qjj.domain.model;
 
 import java.util.List;
 

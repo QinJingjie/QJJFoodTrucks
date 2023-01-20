@@ -1,6 +1,6 @@
-package com.qjj.entity;
+package com.qjj.persistence.model;
 
-import com.qjj.domain.FacilityType;
+import com.qjj.domain.model.FacilityType;
 
 import javax.persistence.*;
 import java.util.List;
