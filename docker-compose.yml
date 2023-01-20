@@ -1,0 +1,31 @@
+version: "2.0"
+services:
+  foodtruck-db:
+    container_name: foodtruck-db
+    image: mysql:8.0.16
+    ports:
+      - "3306:3306"
+    networks:
+      - foodtruck_network
+    environment:
+      - MYSQL_DATABASE=foodtruckdb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
+    restart: always
+
+  foodtruck-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - foodtruck_network
+    depends_on:
+      - foodtruck-db
+    environment:
+      - spring.datasource.url=jdbc:mysql://foodtruck-db:3306/foodtruckdb?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+
+networks:
+  foodtruck_network:
