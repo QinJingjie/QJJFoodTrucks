@@ -43,8 +43,8 @@ docker-compose up --build
 ```
 Then you can access <code>http://localhost:8080/foodtruck/list</code> to get all foodtruck data.<br>
 
-Another api is for checking nearby foodtrucks according to position and distance:
+Another api is for checking nearby food trucks according to position and distance:
 <code>
 http://localhost:8080/foodtruck/search?latitude=37.78623677446536&longitude=-122.38906620560476&maxDistance=300
 </code><br>
-Then you can get all fooftrucks which is 300 meters around given coordinate(x=-122.38906620560476, y=37.78623677446536) <br>
+Then you can get all food trucks which is 300 meters around given coordinate(x=-122.38906620560476, y=37.78623677446536) <br>
