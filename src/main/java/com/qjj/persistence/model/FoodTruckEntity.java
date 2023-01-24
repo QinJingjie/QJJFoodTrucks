@@ -22,7 +22,7 @@ public class FoodTruckEntity {
     private String  applicant;
 
     @Column(name = "fooditems")
-    @ElementCollection(targetClass = String.class)
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "food_items", joinColumns = @JoinColumn(name = "id"))
     private List<String> foodItems;
 
