@@ -27,6 +27,8 @@ public class FoodTruckFetchDataScheduler {
     private RestTemplate restTemplate;
     @Value("${foodtruck.data.url}")
     private String url;
+    @Value("${scheduler.foodtruck.enable}")
+    private boolean enabled;
 
     @Autowired
     public FoodTruckFetchDataScheduler(RestTemplate restTemplate,
@@ -37,9 +39,10 @@ public class FoodTruckFetchDataScheduler {
 
     @Scheduled(initialDelay = 0, fixedDelay = 60 * 1000)
     public void fetchDataScheduler() {
-        List<FoodTruck> foodTruckList = fetchFoodTruckData();
-
-       foodTruckDataService.refreshFoodTruckData(foodTruckList);
+        if(enabled) {
+            List<FoodTruck> foodTruckList = fetchFoodTruckData();
+            foodTruckDataService.refreshFoodTruckData(foodTruckList);
+        }
     }
 
     public List<FoodTruck> fetchFoodTruckData() {

@@ -1,7 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'org.springframework.boot' version '2.2.8.RELEASE'
     id 'java'
-    id "io.spring.dependency-management" version "1.0.0.RELEASE"
+    id 'io.spring.dependency-management' version '1.0.0.RELEASE'
+    id 'groovy'
 }
 group 'qjjproject'
 version '1.0-SNAPSHOT'
@@ -22,4 +23,12 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'mysql:mysql-connector-java:8.0.16'
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    runtime 'com.h2database:h2'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.codehaus.groovy:groovy-all'
+    testRuntime 'cglib:cglib-nodep:3.2.4'
 }
+
+

@@ -6,14 +6,14 @@ public class FoodTruck {
     private Location location;
     private String address;
     private String applicant;
-    private List<String> FoodItemsList;
+    private List<String> foodItemsList;
     private FacilityType facilityType;
 
     public FoodTruck(Location location, String address, String applicant, List<String> foodItemsList, FacilityType facilityType) {
         this.location = location;
         this.address = address;
         this.applicant = applicant;
-        FoodItemsList = foodItemsList;
+        this.foodItemsList = foodItemsList;
         this.facilityType = facilityType;
     }
 
@@ -42,11 +42,11 @@ public class FoodTruck {
     }
 
     public List<String> getFoodItemsList() {
-        return FoodItemsList;
+        return foodItemsList;
     }
 
     public void setFoodItemsList(List<String> foodItemsList) {
-        FoodItemsList = foodItemsList;
+        this.foodItemsList = foodItemsList;
     }
 
     public FacilityType getFacilityType() {
