@@ -1,6 +1,7 @@
 ## Introduction
 This project is build from java and Spring Boot Framework, use Mysql as persistence tool, and use docker to simply run the application. <br>
 
+We use spock framework and groovy to test controller apis.
 We offer 2 apis for users. 
 - Get all food truck data.
 - search nearby food truck, user should pass coordinate and max distance as parameter.
